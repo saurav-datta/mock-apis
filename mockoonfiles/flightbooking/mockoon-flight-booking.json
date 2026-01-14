@@ -1,0 +1,399 @@
+{
+  "uuid": "55403f95-0a1a-41ae-8bd6-3e791b8e1d5e",
+  "lastMigration": 33,
+  "name": "Flight Booking API",
+  "endpointPrefix": "api/v1",
+  "latency": 100,
+  "port": 3001,
+  "hostname": "localhost",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "151051c9-42e6-42ba-91a1-7ac750721bab",
+      "type": "http",
+      "documentation": "Search for available flights",
+      "method": "get",
+      "endpoint": "flights/search",
+      "responses": [
+        {
+          "uuid": "55a2a5d4-390c-4425-8d85-2bc715c47c01",
+          "body": "{\n  \"success\": true,\n  \"query\": {\n    \"from\": \"{{urlParam 'from'}}\",\n    \"to\": \"{{urlParam 'to'}}\",\n    \"date\": \"{{urlParam 'date'}}\",\n    \"passengers\": {{urlParam 'passengers'}}\n  },\n  \"flights\": [\n    {\n      \"flightId\": \"AA123\",\n      \"airline\": \"American Airlines\",\n      \"from\": \"{{urlParam 'from'}}\",\n      \"to\": \"{{urlParam 'to'}}\",\n      \"departure\": \"{{urlParam 'date'}}T08:00:00Z\",\n      \"arrival\": \"{{urlParam 'date'}}T11:30:00Z\",\n      \"duration\": \"3h 30m\",\n      \"price\": 299.99,\n      \"currency\": \"USD\",\n      \"seatsAvailable\": 45,\n      \"class\": \"Economy\",\n      \"stops\": 0\n    },\n    {\n      \"flightId\": \"DL456\",\n      \"airline\": \"Delta Airlines\",\n      \"from\": \"{{urlParam 'from'}}\",\n      \"to\": \"{{urlParam 'to'}}\",\n      \"departure\": \"{{urlParam 'date'}}T10:30:00Z\",\n      \"arrival\": \"{{urlParam 'date'}}T14:15:00Z\",\n      \"duration\": \"3h 45m\",\n      \"price\": 349.99,\n      \"currency\": \"USD\",\n      \"seatsAvailable\": 32,\n      \"class\": \"Economy\",\n      \"stops\": 0\n    },\n    {\n      \"flightId\": \"UA789\",\n      \"airline\": \"United Airlines\",\n      \"from\": \"{{urlParam 'from'}}\",\n      \"to\": \"{{urlParam 'to'}}\",\n      \"departure\": \"{{urlParam 'date'}}T14:00:00Z\",\n      \"arrival\": \"{{urlParam 'date'}}T17:45:00Z\",\n      \"duration\": \"3h 45m\",\n      \"price\": 279.99,\n      \"currency\": \"USD\",\n      \"seatsAvailable\": 28,\n      \"class\": \"Economy\",\n      \"stops\": 0\n    },\n    {\n      \"flightId\": \"SW234\",\n      \"airline\": \"Southwest Airlines\",\n      \"from\": \"{{urlParam 'from'}}\",\n      \"to\": \"{{urlParam 'to'}}\",\n      \"departure\": \"{{urlParam 'date'}}T16:30:00Z\",\n      \"arrival\": \"{{urlParam 'date'}}T20:00:00Z\",\n      \"duration\": \"3h 30m\",\n      \"price\": 249.99,\n      \"currency\": \"USD\",\n      \"seatsAvailable\": 52,\n      \"class\": \"Economy\",\n      \"stops\": 0\n    }\n  ],\n  \"resultsCount\": 4,\n  \"timestamp\": \"{{now}}\"\n}",
+          "statusCode": 200,
+          "label": "Success",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": [],
+          "latency": 0,
+          "bodyType": "INLINE",
+          "databucketID": ""
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "e11490db-4c43-4534-a42b-da425d3db0fc",
+      "type": "http",
+      "documentation": "Get details of a specific flight",
+      "method": "get",
+      "endpoint": "flights/:flightId",
+      "responses": [
+        {
+          "uuid": "d5c622c5-1f6e-4c42-bd39-0567aa1174a9",
+          "body": "{\n  \"success\": true,\n  \"flight\": {\n    \"flightId\": \"{{urlParam 'flightId'}}\",\n    \"airline\": \"American Airlines\",\n    \"aircraftType\": \"Boeing 737-800\",\n    \"from\": {\n      \"code\": \"JFK\",\n      \"name\": \"John F. Kennedy International Airport\",\n      \"city\": \"New York\",\n      \"terminal\": \"4\",\n      \"gate\": \"B22\"\n    },\n    \"to\": {\n      \"code\": \"AUS\",\n      \"name\": \"Austin-Bergstrom International Airport\",\n      \"city\": \"Austin\",\n      \"terminal\": \"Main\",\n      \"gate\": \"12\"\n    },\n    \"departure\": \"2026-02-15T08:00:00Z\",\n    \"arrival\": \"2026-02-15T11:30:00Z\",\n    \"duration\": \"3h 30m\",\n    \"price\": 299.99,\n    \"currency\": \"USD\",\n    \"seatsAvailable\": 45,\n    \"totalSeats\": 160,\n    \"class\": \"Economy\",\n    \"stops\": 0,\n    \"amenities\": [\"WiFi\", \"In-flight Entertainment\", \"Power Outlets\", \"Snacks\"],\n    \"baggageAllowance\": {\n      \"checkedBags\": 1,\n      \"carryOn\": 1,\n      \"personal\": 1\n    }\n  },\n  \"timestamp\": \"{{now}}\"\n}",
+          "statusCode": 200,
+          "label": "Success",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": [],
+          "latency": 0,
+          "bodyType": "INLINE",
+          "databucketID": ""
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "944e942c-f20a-4175-92b2-cf59dd29f368",
+      "type": "http",
+      "documentation": "Book a flight",
+      "method": "post",
+      "endpoint": "bookings",
+      "responses": [
+        {
+          "uuid": "7db92158-d724-4d40-82eb-31629161fd24",
+          "body": "{\n  \"success\": true,\n  \"message\": \"Flight booked successfully\",\n  \"booking\": {\n    \"bookingId\": \"BK{{faker 'string.alphanumeric' 8}}\",\n    \"confirmationCode\": \"{{faker 'string.alphanumeric' 6}}\",\n    \"status\": \"confirmed\",\n    \"flightId\": \"{{body 'flightId'}}\",\n    \"passenger\": {\n      \"firstName\": \"{{body 'passenger.firstName'}}\",\n      \"lastName\": \"{{body 'passenger.lastName'}}\",\n      \"email\": \"{{body 'passenger.email'}}\",\n      \"phone\": \"{{body 'passenger.phone'}}\"\n    },\n    \"seatNumber\": \"{{faker 'number.int' min=1 max=30}}{{faker 'helpers.arrayElement' ['A', 'B', 'C', 'D', 'E', 'F']}}\",\n    \"price\": {{body 'price'}},\n    \"currency\": \"USD\",\n    \"paymentMethod\": \"{{body 'paymentMethod'}}\",\n    \"bookingDate\": \"{{now}}\",\n    \"departureDate\": \"{{body 'departureDate'}}\"\n  },\n  \"timestamp\": \"{{now}}\"\n}",
+          "statusCode": 201,
+          "label": "Success",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": [],
+          "latency": 0,
+          "bodyType": "INLINE",
+          "databucketID": ""
+        },
+        {
+          "uuid": "22a66613-ced4-4ce5-aede-7de4b49c10f7",
+          "body": "{\n  \"success\": false,\n  \"error\": {\n    \"code\": \"INSUFFICIENT_SEATS\",\n    \"message\": \"Not enough seats available for this flight\"\n  },\n  \"timestamp\": \"{{now}}\"\n}",
+          "statusCode": 400,
+          "label": "No seats available",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "seats",
+              "value": "0",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": [],
+          "latency": 0,
+          "bodyType": "INLINE",
+          "databucketID": ""
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "c53cfa53-b6f1-4437-b37d-b613d4822d1c",
+      "type": "http",
+      "documentation": "Get booking details",
+      "method": "get",
+      "endpoint": "bookings/:bookingId",
+      "responses": [
+        {
+          "uuid": "70938d20-5212-470e-90d4-8aea1bff64ac",
+          "body": "{\n  \"success\": true,\n  \"booking\": {\n    \"bookingId\": \"{{urlParam 'bookingId'}}\",\n    \"confirmationCode\": \"XYZ123\",\n    \"status\": \"confirmed\",\n    \"flight\": {\n      \"flightId\": \"AA123\",\n      \"airline\": \"American Airlines\",\n      \"from\": \"JFK\",\n      \"to\": \"AUS\",\n      \"departure\": \"2026-02-15T08:00:00Z\",\n      \"arrival\": \"2026-02-15T11:30:00Z\"\n    },\n    \"passenger\": {\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"email\": \"john.doe@example.com\",\n      \"phone\": \"+1-555-0100\"\n    },\n    \"seatNumber\": \"12A\",\n    \"price\": 299.99,\n    \"currency\": \"USD\",\n    \"bookingDate\": \"2026-01-13T10:30:00Z\"\n  },\n  \"timestamp\": \"{{now}}\"\n}",
+          "statusCode": 200,
+          "label": "Success",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": [],
+          "latency": 0,
+          "bodyType": "INLINE",
+          "databucketID": ""
+        },
+        {
+          "uuid": "6e9ffaed-5fbc-490b-935e-32dc12d0c69c",
+          "body": "{\n  \"success\": false,\n  \"error\": {\n    \"code\": \"BOOKING_NOT_FOUND\",\n    \"message\": \"Booking ID {{urlParam 'bookingId'}} not found\"\n  },\n  \"timestamp\": \"{{now}}\"\n}",
+          "statusCode": 404,
+          "label": "Not found",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "bookingId",
+              "value": "INVALID",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": [],
+          "latency": 0,
+          "bodyType": "INLINE",
+          "databucketID": ""
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "d3c0a173-bdc9-43f9-9ab9-13f0d94e93d2",
+      "type": "http",
+      "documentation": "Cancel a booking",
+      "method": "delete",
+      "endpoint": "bookings/:bookingId",
+      "responses": [
+        {
+          "uuid": "ebab2310-0875-40a2-8970-5eab93042035",
+          "body": "{\n  \"success\": true,\n  \"message\": \"Booking cancelled successfully\",\n  \"bookingId\": \"{{urlParam 'bookingId'}}\",\n  \"refund\": {\n    \"amount\": 299.99,\n    \"currency\": \"USD\",\n    \"processingTime\": \"5-7 business days\"\n  },\n  \"timestamp\": \"{{now}}\"\n}",
+          "statusCode": 200,
+          "label": "Success",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": [],
+          "latency": 0,
+          "bodyType": "INLINE",
+          "databucketID": ""
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "aed97a4d-37e2-4f0b-bdcf-82eb2ec07f73",
+      "type": "http",
+      "documentation": "Get list of available airports",
+      "method": "get",
+      "endpoint": "airports",
+      "responses": [
+        {
+          "uuid": "9f2fad43-93c6-4b15-bef3-4f2432eb53eb",
+          "body": "{\n  \"success\": true,\n  \"airports\": [\n    {\n      \"code\": \"JFK\",\n      \"name\": \"John F. Kennedy International Airport\",\n      \"city\": \"New York\",\n      \"country\": \"USA\"\n    },\n    {\n      \"code\": \"AUS\",\n      \"name\": \"Austin-Bergstrom International Airport\",\n      \"city\": \"Austin\",\n      \"country\": \"USA\"\n    },\n    {\n      \"code\": \"LAX\",\n      \"name\": \"Los Angeles International Airport\",\n      \"city\": \"Los Angeles\",\n      \"country\": \"USA\"\n    },\n    {\n      \"code\": \"ORD\",\n      \"name\": \"O'Hare International Airport\",\n      \"city\": \"Chicago\",\n      \"country\": \"USA\"\n    },\n    {\n      \"code\": \"DFW\",\n      \"name\": \"Dallas/Fort Worth International Airport\",\n      \"city\": \"Dallas\",\n      \"country\": \"USA\"\n    },\n    {\n      \"code\": \"SFO\",\n      \"name\": \"San Francisco International Airport\",\n      \"city\": \"San Francisco\",\n      \"country\": \"USA\"\n    },\n    {\n      \"code\": \"MIA\",\n      \"name\": \"Miami International Airport\",\n      \"city\": \"Miami\",\n      \"country\": \"USA\"\n    },\n    {\n      \"code\": \"SEA\",\n      \"name\": \"Seattle-Tacoma International Airport\",\n      \"city\": \"Seattle\",\n      \"country\": \"USA\"\n    }\n  ],\n  \"count\": 8,\n  \"timestamp\": \"{{now}}\"\n}",
+          "statusCode": 200,
+          "label": "Success",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": [],
+          "latency": 0,
+          "bodyType": "INLINE",
+          "databucketID": ""
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    },
+    {
+      "uuid": "7baa3635-8e71-449f-bc22-1ebdf2625436",
+      "type": "http",
+      "documentation": "Health check endpoint",
+      "method": "get",
+      "endpoint": "health",
+      "responses": [
+        {
+          "uuid": "79f62a61-24c2-4dcf-bc7b-12f3effeb8ff",
+          "body": "{\n  \"status\": \"healthy\",\n  \"service\": \"Flight Booking API\",\n  \"version\": \"1.0.0\",\n  \"timestamp\": \"{{now}}\"\n}",
+          "statusCode": 200,
+          "label": "Healthy",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": [],
+          "latency": 0,
+          "bodyType": "INLINE",
+          "databucketID": ""
+        }
+      ],
+      "responseMode": null,
+      "streamingMode": null,
+      "streamingInterval": 0
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "151051c9-42e6-42ba-91a1-7ac750721bab"
+    },
+    {
+      "type": "route",
+      "uuid": "e11490db-4c43-4534-a42b-da425d3db0fc"
+    },
+    {
+      "type": "route",
+      "uuid": "944e942c-f20a-4175-92b2-cf59dd29f368"
+    },
+    {
+      "type": "route",
+      "uuid": "c53cfa53-b6f1-4437-b37d-b613d4822d1c"
+    },
+    {
+      "type": "route",
+      "uuid": "d3c0a173-bdc9-43f9-9ab9-13f0d94e93d2"
+    },
+    {
+      "type": "route",
+      "uuid": "aed97a4d-37e2-4f0b-bdcf-82eb2ec07f73"
+    },
+    {
+      "type": "route",
+      "uuid": "7baa3635-8e71-449f-bc22-1ebdf2625436"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}
